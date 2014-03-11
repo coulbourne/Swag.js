@@ -29,7 +29,7 @@ function animatePage (pseudoElement) { // pseudoElement must be "after" or "befo
 function load_ajax_data(container) {
 	State = History.getState();   
 	$.post(State.url, function(data) {
-		var target = $(data).find(container).outerHtml(),
+		var target = $(data).find(container)[0].outerHtml,
 			changeTitle = $(data).filter("title").text();
 
 		$main = $('.content-main');
