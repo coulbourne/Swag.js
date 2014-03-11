@@ -55,6 +55,10 @@ $.fn.swagLoad = function(clickable) {
 		$before = $('.content-before');
 	});
 
+		$after = $('.content-after');
+		$before = $('.content-before');
+
+
     $.ajaxSetup({ cache: false });
     var container = this.selector;
 
