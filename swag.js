@@ -32,7 +32,7 @@ function animatePage (pseudoElement) { // pseudoElement must be "after" or "befo
 function load_ajax_data(container) {
 	State = History.getState();   
 	$.post(State.url, function(data) {
-		var target = $(data).find(container)[0].outerHtml,
+		var target = $(data).find(container).wrap('<div></div>').parent().html(),
 			changeTitle = $(data).filter("title").text();
 
 		$main = $('.content-main');
@@ -41,22 +41,18 @@ function load_ajax_data(container) {
 		$(document).attr('title', changeTitle);
 		
 		if (State.data.direction == "right"){
-			$('.content-after').html( target , animatePage("after"));
+			$after.html( target , animatePage("after"));
 		}
 
 		if (State.data.direction == "left"){
-			$('.content-before').html( target , animatePage("before"));
+			$before.html( target , animatePage("before"));
 		}
 	});
 }
 
 
 $.fn.swagLoad = function(clickable) {
-	$(this).parent().after("<div class='content-after'></div>").before("<div class='content-before'></div>");
-
-		$after = $('.content-after');
-		$before = $('.content-before');
-
+	$(this).wrap("<div id='content'></div>").parent().after("<div class='content-after'></div>").before("<div class='content-before'></div>");
 
     $.ajaxSetup({ cache: false });
     var container = this.selector;
