@@ -29,7 +29,7 @@ function animatePage (pseudoElement) { // pseudoElement must be "after" or "befo
 function load_ajax_data(container) {
 	State = History.getState();   
 	$.post(State.url, function(data) {
-		var target = $(data).find(container).html(),
+		var target = $(data).find(container).outerHtml(),
 			changeTitle = $(data).filter("title").text();
 
 		$main = $('.content-main');
@@ -38,11 +38,11 @@ function load_ajax_data(container) {
 		$(document).attr('title', changeTitle);
 		
 		if (State.data.direction == "right"){
-			$after.html( "<div id='page-content'>" + target + "</div>" , animatePage("after"));
+			$after.html( target , animatePage("after"));
 		}
 
 		if (State.data.direction == "left"){
-			$before.html( "<div id='page-content'>" + target + "</div>" , animatePage("before"));
+			$before.html( target , animatePage("before"));
 		}
 	});
 }
