@@ -12,6 +12,9 @@ function animatePage (pseudoElement) { // pseudoElement must be "after" or "befo
 
 	console.log(pseudoElement + " + " + pseudo);
 
+	$after = $('.content-after');
+	$before = $('.content-before');
+
 	pseudo.animate( {left: '0'}, speed, "swing" );
 	$main.animate( {left: percentage + "%"}, speed, "swing", function(){
 
