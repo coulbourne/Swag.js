@@ -41,11 +41,11 @@ function load_ajax_data(container) {
 		$(document).attr('title', changeTitle);
 		
 		if (State.data.direction == "right"){
-			$after.html( target , animatePage("after"));
+			$('.content-after').html( target , animatePage("after"));
 		}
 
 		if (State.data.direction == "left"){
-			$before.html( target , animatePage("before"));
+			$('.content-before').html( target , animatePage("before"));
 		}
 	});
 }
@@ -72,6 +72,7 @@ $.fn.swagLoad = function(clickable) {
 	});
 
 	History.Adapter.bind(window,'statechange',function(e) {
+
 		load_ajax_data(container);
 	});
 	console.log("Swag Loaded ...");
