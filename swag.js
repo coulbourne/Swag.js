@@ -49,10 +49,7 @@ function load_ajax_data(container) {
 
 
 $.fn.swagLoad = function(clickable) {
-	$(this).parent().after("<div class='content-after'></div>", function(){
-		$after = $('.content-after');
-	}).before("<div class='content-before'></div>", function(){
-		$before = $('.content-before');
+	$(this).parent().after("<div class='content-after'></div>").before("<div class='content-before'></div>");
 	});
 
 		$after = $('.content-after');
