@@ -38,17 +38,19 @@ function load_ajax_data(container) {
 		$(document).attr('title', changeTitle);
 		
 		if (State.data.direction == "right"){
-			$after.html( "<div id='page-content' class='blog-container'>" + target + "</div>" , animatePage("after"));
+			$after.html( "<div id='page-content'>" + target + "</div>" , animatePage("after"));
 		}
 
 		if (State.data.direction == "left"){
-			$before.html( "<div id='page-content' class='blog-container'>" + target + "</div>" , animatePage("before"));
+			$before.html( "<div id='page-content'>" + target + "</div>" , animatePage("before"));
 		}
 	});
 }
 
 
 $.fn.swagLoad = function(clickable) {
+	$(this).parent().after("<div class='content-after'></div>").before("<div class='content-before'></div>");
+
     $.ajaxSetup({ cache: false });
     var container = this.selector;
 
