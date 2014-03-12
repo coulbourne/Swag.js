@@ -12,19 +12,20 @@ function animatePage (pseudoElement) { // pseudoElement must be "after" or "befo
 
 	console.log(pseudoElement + " + " + pseudo);
 
-	$after = $('.content-after');
-	$before = $('.content-before');
+	$after = $('.swag-after');
+	$before = $('.swag-before');
+	$main = $('.swag-main');
 
 	pseudo.animate( {left: '0'}, speed, "swing" );
 	$main.animate( {left: percentage + "%"}, speed, "swing", function(){
 
 		$main.html("")
-			.addClass('content-' + pseudoElement)
-			.removeClass('content-main')
+			.addClass('swag-' + pseudoElement)
+			.removeClass('swag-main')
 			.css( {left: 0 - percentage + "%"} );
 
-		pseudo.removeClass('content-' + pseudoElement)
-			.addClass('content-main');
+		pseudo.removeClass('swag-' + pseudoElement)
+			.addClass('swag-main');
 
 	});
 }
@@ -32,12 +33,13 @@ function animatePage (pseudoElement) { // pseudoElement must be "after" or "befo
 function load_ajax_data(container) {
 	State = History.getState();   
 	$.post(State.url, function(data) {
-		var target = $(data).find(container).wrap('<div></div>').parent().html(),
+		var target = $(data).filter(container)[0].outerHTML,
 			changeTitle = $(data).filter("title").text();
 
-		$main = $('.content-main');
-		$after = $('.content-after');
-		$before = $('.content-before');
+
+		$main = $('.swag-main');
+		$after = $('.swag-after');
+		$before = $('.swag-before');
 		$(document).attr('title', changeTitle);
 		
 		if (State.data.direction == "right"){
@@ -52,7 +54,7 @@ function load_ajax_data(container) {
 
 
 $.fn.swagLoad = function(clickable) {
-	$(this).wrap("<div id='content'></div>").parent().after("<div class='content-after'></div>").before("<div class='content-before'></div>");
+	$(this).wrap("<div id='swag' class='swag-main'></div>").parent().after("<div class='swag-after'></div>").before("<div class='swag-before'></div>");
 
     $.ajaxSetup({ cache: false });
     var container = this.selector;
